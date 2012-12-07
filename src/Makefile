@@ -6,6 +6,14 @@ all:
 run:
 	python manage.py runserver_plus
 
+pip:
+	pip install -r ../requirements/requirements-dev.txt
+	pip install -r ../requirements/requirements-test.txt
+
+initial:
+	make pip
+	python manage.py syncdb
+
 test:
 	python manage.py test
 	
@@ -27,3 +35,4 @@ makemessagesjs:
 
 migrate:
 	python manage.py migrate
+

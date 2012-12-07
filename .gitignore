@@ -16,7 +16,9 @@ atlassian-ide-plugin.xml
 # Project
 /public/static
 /public/media
+settings_local.py
 
 
 
 *.log
+*.db
