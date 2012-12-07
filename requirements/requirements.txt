@@ -1,0 +1,11 @@
+django>=1.4.1
+psycopg2
+
+south
+
+django-pagination
+django_compressor
+python-memcached
+
+PIL
+sorl-thumbnail
