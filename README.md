@@ -1,0 +1,1 @@
+[![Build Status](https://secure.travis-ci.org/rootart/seva.png)](https://travis-ci.org/rootart/seva)
