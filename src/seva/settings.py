@@ -91,11 +91,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
+    'tastypie',
     'profiles',
     'technologies',
     'evaluations',
     'projects'
 )
+
+AUTH_PROFILE_MODULE = 'profiles.Profile'
 
 LOGGING = {
     'version': 1,

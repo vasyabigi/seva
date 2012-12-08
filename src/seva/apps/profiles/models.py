@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     joined = models.DateTimeField(blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
