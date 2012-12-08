@@ -91,7 +91,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django_extensions',
-    'south'
+    'south',
+    'profiles',
+    'technologies',
+    'evaluations',
+    'projects'
 )
 
 LOGGING = {
