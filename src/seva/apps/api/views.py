@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from tastypie.resources import ModelResource
 from tastypie.serializers import Serializer
 from tastypie.authentication import BasicAuthentication, Authentication
@@ -6,12 +8,15 @@ from tastypie.throttle import CacheThrottle, CacheDBThrottle
 from tastypie import fields
 
 from profiles.models import Profile
-from django.contrib.auth.models import User
+from evaluations.models import SelfEvaluation
 
 
 class UserListResource(ModelResource):
     full_name = fields.CharField()
+    avg_level = fields.DecimalField()
     bio = fields.CharField()
+    favorites = fields.ListField()
+    evaluations = fields.ListField()
     
     class Meta:
         queryset = User.objects.all()
@@ -33,9 +38,28 @@ class UserListResource(ModelResource):
 
     def dehydrate_full_name(self, bundle):
         return bundle.obj.get_full_name()
-    
+
     def dehydrate_bio(self, bundle):
         return bundle.obj.get_profile().bio
 
-class UserResource(ModelResource):
-    pass
+    def dehydrate_avg_level(self, bundle):
+        return bundle.obj.get_profile().get_avg_level()
+
+    def dehydrate_favorites(self, bundle):
+        return list(SelfEvaluation.objects.filter(user=bundle.obj, is_favorite=True).\
+            select_related('technology').values_list('technology__title', flat=True)
+        )
+
+    def dehydrate_evaluations(self, bundle):
+        evaluations = SelfEvaluation.objects.filter(user=bundle.obj).\
+            select_related('technology')
+        mapping = lambda x: {
+            'technology': x.technology.title,
+            'technology_slug': x.technology.slug,
+            'logo': x.technology.logo,
+            'level': x.level,
+            'created': x.created,
+            'updated': x.updated,
+            'is_favorite': x.is_favorite
+        }
+        return map(mapping, evaluations)

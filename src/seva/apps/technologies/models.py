@@ -13,6 +13,9 @@ class Category(models.Model):
 class Technology(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
+    logo = models.ImageField(upload_to='tech/logos',
+        blank=True, null=True
+    )
     category = models.ForeignKey(Category, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     is_published = models.BooleanField(default=True)

@@ -19,5 +19,6 @@ class Evaluation(models.Model):
 
 
 class SelfEvaluation(Evaluation):
-    pass
+    is_favorite = models.BooleanField()
+
 

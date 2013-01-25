@@ -15,3 +15,7 @@ class Profile(models.Model):
 
     def is_active():
         return self.user.is_active
+
+    def get_avg_level(self):
+        return self.user.selfevaluation_set.\
+            aggregate(models.Avg('level'))['level__avg']
