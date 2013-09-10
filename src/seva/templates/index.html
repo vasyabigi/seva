@@ -1,0 +1,35 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html ng-app="seva">
+<head>
+  <meta charset=utf-8 />
+  <title>DS Skills</title>
+  <!--[if lt IE9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="{% static "css/reset5.css"  %}" type="text/css" media="screen" charset="utf-8"/>
+  <link rel="stylesheet" href="{% static "css/skills.css" %}" type="text/css" media="screen" charset="utf-8"/>
+</head>
+<body>
+  <header>
+  <h1>DS Skills</h1>
+  <nav>
+  <a>★</a>
+  <a href="#/user/{{ user.username }}" ng-repeat="user in users">
+	  <img src="http://www.gravatar.com/avatar/default" gravatar-size="100">
+  </a>
+  </nav>
+  </header>
+
+  <section ng-view></section>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/skills.js" %}"></script>
+  <script src="{% static "js/app.js" %}"></script>
+  <script src="{% static "js/controllers.js" %}"></script>
+  <script src="{% static "js/services.js" %}"></script>
+  <script src="{% static "js/vendor/md5.js" %}"></script>
+  <script src="{% static "js/vendor/angular-gravatar.js" %}"></script>
+
+ 
+</body>
+</html>

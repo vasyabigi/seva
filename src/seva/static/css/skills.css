@@ -1,0 +1,95 @@
+body {
+  font: normal 1em/1.5em "Droid Sans", sans-serif;
+  background: #f4f4f4;
+}
+
+h1 {
+  font-size: 1.5em;
+  color: #777;
+  float: left;
+  line-height: 2em;
+  margin-right: 2.3em;
+}
+
+header {
+  height: 3em;
+  border-bottom: 1px solid #ddd;
+  padding: .5em;
+}
+
+header nav a {
+  line-height: 3em;
+  float: left;
+  margin-right: .5em;
+  text-decoration: none;
+  color: #111;
+}
+
+header nav a img {
+  width: 3em;
+  box-shadow: 0 0 .25em #111;
+}
+
+ul {
+  list-style: none;
+}
+
+section {
+  margin: 1em;
+  position: relative;
+}
+
+li {
+  float: left;
+  line-height: 2em;
+  height: 2em;
+  width: 25em;
+  color: #a40000;
+  letter-spacing: .25em;
+  position: relative;
+}
+
+li span {
+  position: absolute;
+  right: 0;
+  font-size: .8em;
+  letter-spacing: 0em;
+  font-weight: bold;
+  color: #222;
+}
+
+article {
+  position: absolute;
+}
+
+article h2 {
+  position: absolute;
+  text-shadow: 1px 1px 1px #fff;
+  font-size: 5em;
+  color: #ccc;
+  right: 0;
+  top: -.75em;
+  letter-spacing: -.1em;
+}
+
+article.avg li {
+  color: #ccc;
+}
+
+article.user {
+  display: none;
+}
+
+article.user em {
+  visibility: hidden;
+}
+
+li em {
+  float: left;
+  width: 8em;
+  text-align: right;
+  margin-right: 1em;
+  color: #000;
+  letter-spacing: -0.1em;
+  font-style: normal;
+}

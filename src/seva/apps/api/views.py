@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 from tastypie.resources import ModelResource
 from tastypie.serializers import Serializer
@@ -9,6 +10,7 @@ from tastypie import fields
 
 from profiles.models import Profile
 from evaluations.models import SelfEvaluation
+from technologies.models import Technology
 
 
 class UserListResource(ModelResource):
@@ -17,7 +19,7 @@ class UserListResource(ModelResource):
     bio = fields.CharField()
     favorites = fields.ListField()
     evaluations = fields.ListField()
-    
+
     class Meta:
         queryset = User.objects.all()
         allowed_methods = ['get',]
@@ -26,7 +28,7 @@ class UserListResource(ModelResource):
         authentication = Authentication()
         authorization = Authorization()
         throttle = CacheDBThrottle(
-            throttle_at=5, timeframe=60,
+            throttle_at=50, timeframe=60,
             expiration=24*60*60
         )
         always_return_data = True
@@ -63,3 +65,16 @@ class UserListResource(ModelResource):
             'is_favorite': x.is_favorite
         }
         return map(mapping, evaluations)
+
+
+class TechnologyResource(ModelResource):
+    avg = fields.DecimalField()
+
+    def dehydrate_avg(self, bundle):
+        return  bundle.obj.selfevaluation_set.aggregate(Avg('level'))['level__avg']
+
+    class Meta:
+        model = Technology
+        queryset = Technology.objects.all()
+        serializers = Serializer(formats=['json', ])
+        fields = ('title', 'slug')

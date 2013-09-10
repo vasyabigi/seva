@@ -4,7 +4,7 @@ from technologies.models import Category, Technology
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('__unicode__', 'slug')
 
 
 class TechnologyAdmin(admin.ModelAdmin):
