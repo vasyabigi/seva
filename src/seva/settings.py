@@ -95,7 +95,8 @@ INSTALLED_APPS = (
     'profiles',
     'technologies',
     'evaluations',
-    'projects'
+    'projects',
+    'gravatar'
 )
 
 AUTH_PROFILE_MODULE = 'profiles.Profile'

@@ -4,6 +4,8 @@ from evaluations.models import SelfEvaluation
 
 
 class SelfEvaluationAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ('level',)
+    list_editable = ('level',)
+    list_display = ('user', 'technology', 'level')
 
 admin.site.register(SelfEvaluation, SelfEvaluationAdmin)

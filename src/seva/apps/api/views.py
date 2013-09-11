@@ -69,12 +69,25 @@ class UserListResource(ModelResource):
 
 class TechnologyResource(ModelResource):
     avg = fields.DecimalField()
+    evaluations = fields.ListField(blank=True, use_in=['details'])
 
     def dehydrate_avg(self, bundle):
         return  bundle.obj.selfevaluation_set.aggregate(Avg('level'))['level__avg']
 
+    def dehydrate_evaluations(self, bundle):
+        sl = SelfEvaluation.objects.filter(technology=bundle.obj)
+        return [
+            {
+                'username': i.user.username,
+                'level': i.level,
+                'full_name': i.user.get_full_name(),
+                'favorite': i.is_favorite
+            } for i in sl
+        ]
     class Meta:
         model = Technology
         queryset = Technology.objects.all()
         serializers = Serializer(formats=['json', ])
         fields = ('title', 'slug')
+        detail_uri_name = 'slug'
+

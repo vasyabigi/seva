@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load staticfiles %}
+<!DOCTYPE html>{% load staticfiles gravatar %}
 <html ng-app="seva">
 <head>
   <meta charset=utf-8 />
@@ -14,16 +14,17 @@
   <h1>DS Skills</h1>
   <nav>
   <a>★</a>
-  <a href="#/user/{{ user.username }}" ng-repeat="user in users">
-	  <img src="http://www.gravatar.com/avatar/default" gravatar-size="100">
+  {% for user in users %}
+  <a href="#/user/{{ user.username }}">
+	  <img src="{% gravatar_for_user user 40 %}" />
   </a>
+  {% endfor %}
   </nav>
   </header>
 
   <section ng-view></section>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
   <script src="{% static "js/jquery.min.js" %}"></script>
-  <script src="{% static "js/skills.js" %}"></script>
   <script src="{% static "js/app.js" %}"></script>
   <script src="{% static "js/controllers.js" %}"></script>
   <script src="{% static "js/services.js" %}"></script>

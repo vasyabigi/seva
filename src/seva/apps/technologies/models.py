@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 class Category(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    
+
     def __unicode__(self):
         return self.title
 
@@ -24,3 +24,20 @@ class Technology(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class TechnologyLevelDescription(models.Model):
+    technology = models.ForeignKey(Technology)
+    level = models.PositiveIntegerField()
+    description = models.TextField()
+
+    def __unicode__(self):
+        return self.level
+
+
+class KeyMetrics(models.Model):
+    technology = models.ForeignKey(Technology)
+    metric_description = models.TextField()
+
+    def __unicode__(self):
+        return self.technology.title

@@ -10,4 +10,7 @@ python-memcached
 PIL
 sorl-thumbnail
 
+django-gravatar
+
+mimeparse
 git+https://github.com/toastdriven/django-tastypie.git#egg=tastypie
