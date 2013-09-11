@@ -1,1 +1,17 @@
-sdf
+<div class="user-details">
+  <div class="avg-level">
+    <div class="historic-info">
+      was <em class='number'>{{ user.number }}</em> and joined on <em class='joined'>{{ user.joined }}</em>
+    </div>
+    <em>{{ user.avg_level }}</em>
+    average level
+  </div>
+  <div class="loved-technologies">
+    {{ user.email }} loves <a href="#/technology/{{ tech.technology__slug }}" ng-repeat="tech in user.favorites">{{ tech.technology__title }}</a>
+  </div>
+</div>
+<article class="avg">
+      <ul>
+	      <li ng-repeat="evl in user.evaluations"><em><a href="#/technology/{{ evl.technology_slug }}">{{ evl.technology }}</a></em>★★★★★★★★★★<span class="val">{{ evl.level }}</span></li>
+      </ul>
+</article>

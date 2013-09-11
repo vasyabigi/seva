@@ -7,7 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
-    joined = models.DateTimeField(blank=True, null=True)
+    joined = models.DateField(blank=True, null=True)
+    number = models.PositiveIntegerField(default=0)
     bio = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

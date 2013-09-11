@@ -19,6 +19,8 @@ class UserListResource(ModelResource):
     bio = fields.CharField()
     favorites = fields.ListField()
     evaluations = fields.ListField()
+    joined = fields.DateField()
+    number = fields.CharField()
 
     class Meta:
         queryset = User.objects.all()
@@ -38,6 +40,12 @@ class UserListResource(ModelResource):
         )
         detail_uri_name = 'username'
 
+    def dehydrate_joined(self, bundle):
+        return bundle.obj.profile.joined
+
+    def dehydrate_number(self, bundle):
+        return bundle.obj.profile.number
+
     def dehydrate_full_name(self, bundle):
         return bundle.obj.get_full_name()
 
@@ -49,7 +57,7 @@ class UserListResource(ModelResource):
 
     def dehydrate_favorites(self, bundle):
         return list(SelfEvaluation.objects.filter(user=bundle.obj, is_favorite=True).\
-            select_related('technology').values_list('technology__title', flat=True)
+            select_related('technology').values('technology__title',  'technology__slug')
         )
 
     def dehydrate_evaluations(self, bundle):

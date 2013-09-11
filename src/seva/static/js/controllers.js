@@ -11,7 +11,11 @@ angular.module('seva.controllers', []).
           $rootScope.users = data.objects;
         });
      }]).
-  controller('UserDetails', ['$scope', '$log', function($scope, $log) {
+  controller('UserDetails', ['$scope', '$log', '$http', '$routeParams', function($scope, $log, $http, $routeParams) {
+    $http.get('/api/v1/users/'+$routeParams.username).
+    success(function(data){
+      $scope.user = data;
+          })
       }]).
   controller('TechnologyDetails', ['$scope', '$http', '$routeParams',
       function($scope, $http, $routeParams) {
