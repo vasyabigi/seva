@@ -7,6 +7,7 @@ from tastypie.authentication import BasicAuthentication, Authentication
 from tastypie.authorization import DjangoAuthorization, Authorization
 from tastypie.throttle import CacheThrottle, CacheDBThrottle
 from tastypie import fields
+from tastypie.cache import SimpleCache
 
 from profiles.models import Profile
 from evaluations.models import SelfEvaluation
@@ -18,7 +19,7 @@ class UserListResource(ModelResource):
     avg_level = fields.DecimalField()
     bio = fields.CharField()
     favorites = fields.ListField()
-    evaluations = fields.ListField()
+    evaluations = fields.ListField(use_in=['details',])
     joined = fields.DateField()
     number = fields.CharField()
 
@@ -94,8 +95,10 @@ class TechnologyResource(ModelResource):
         ]
     class Meta:
         model = Technology
-        queryset = Technology.objects.all()
+        queryset = Technology.objects.all().select_related('selfevaluation', 'selfevaluation__user')
         serializers = Serializer(formats=['json', ])
         fields = ('title', 'slug')
         detail_uri_name = 'slug'
+        limit = 200
+        cache = SimpleCache(timeout=30)
 
