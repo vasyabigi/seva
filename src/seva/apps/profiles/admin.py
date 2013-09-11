@@ -19,15 +19,14 @@ def send_invitation_email(modeladmin, request, queryset):
 
         subject, from_email, to = 'You have bean invited to DS Seve!', settings.DEFAULT_FROM_EMAIL, user.email
 
-        plaintext = get_template('profile/invitation_email.txt')
-        htmly = get_template('profile/invitation_email.html')
         context = Context({ 'user': user, 'password': new_password })
-        text_content = plaintext.render(context)
-        html_content = htmly.render(context)
+        text_content = get_template('profile/invitation_email.txt').render(context)
+        html_content = get_template('profile/invitation_email.html').render(context)
 
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, 'text/html')
         msg.send()
+        user.save()
 
 send_invitation_email.short_description = 'Reset user\'s password and send invitation with new one.'
 
