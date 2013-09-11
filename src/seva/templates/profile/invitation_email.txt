@@ -1,0 +1,6 @@
+Greetings, {{ user.first_name }}!
+
+You have been chosen to use DS Seva.
+Your credentials:
+    Login: {{ user.username}}
+    Password: {{ password }}
