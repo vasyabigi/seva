@@ -19,12 +19,12 @@ class UserListResource(ModelResource):
     avg_level = fields.DecimalField()
     bio = fields.CharField()
     favorites = fields.ListField()
-    evaluations = fields.ListField(use_in=['details',])
+    evaluations = fields.ListField(use_in='detail')
     joined = fields.DateField()
     number = fields.CharField()
 
     class Meta:
-        queryset = User.objects.all()
+        queryset = User.objects.all().select_related('profile')
         allowed_methods = ['get',]
         resource_name = 'users'
         serializer = Serializer(formats=['json',])
@@ -34,7 +34,6 @@ class UserListResource(ModelResource):
             throttle_at=50, timeframe=60,
             expiration=24*60*60
         )
-        always_return_data = True
         excludes = (
             'password', 'date_joined', 'is_staff', 'is_superuser',
             'first_name', 'last_name'
@@ -76,9 +75,10 @@ class UserListResource(ModelResource):
         return map(mapping, evaluations)
 
 
+
 class TechnologyResource(ModelResource):
     avg = fields.DecimalField()
-    evaluations = fields.ListField(blank=True, use_in=['details'])
+    evaluations = fields.ListField(blank=True, use_in='detail')
 
     def dehydrate_avg(self, bundle):
         return  bundle.obj.selfevaluation_set.aggregate(Avg('level'))['level__avg']
@@ -93,12 +93,16 @@ class TechnologyResource(ModelResource):
                 'favorite': i.is_favorite
             } for i in sl
         ]
+
     class Meta:
-        model = Technology
         queryset = Technology.objects.all().select_related('selfevaluation', 'selfevaluation__user')
         serializers = Serializer(formats=['json', ])
         fields = ('title', 'slug')
         detail_uri_name = 'slug'
         limit = 200
+        throttle = CacheDBThrottle(
+            throttle_at=50, timeframe=60,
+            expiration=24*60*60
+        )
         cache = SimpleCache(timeout=30)
 

@@ -101,6 +101,9 @@ INSTALLED_APPS = (
 
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 
+TASTYPIE_FULL_DEBUG = True
+TASTYPIE_DEFAULT_FORMATS = ['json',]
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
