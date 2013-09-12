@@ -17,7 +17,7 @@ def send_invitation_email(modeladmin, request, queryset):
         new_password = User.objects.make_random_password()
         user.set_password(new_password)
 
-        subject, from_email, to = 'You have bean invited to DS Seve!', settings.DEFAULT_FROM_EMAIL, user.email
+        subject, from_email, to = 'You have bean invited to DS Seva!', settings.DEFAULT_FROM_EMAIL, user.email
 
         context = Context({ 'user': user, 'password': new_password })
         text_content = get_template('profile/invitation_email.txt').render(context)
