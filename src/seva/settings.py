@@ -8,10 +8,11 @@ DEBUG = False
 TEMPLATE_DEBUG = False
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Traceback ME', '7fbmvu5vo@api.traceback.me'),
 )
 
 DEFAULT_FROM_EMAIL='info@djangostars.com'
+SERVER_EMAIL='info@djangostars.com'
 
 MANAGERS = ADMINS
 
@@ -133,3 +134,7 @@ LOGGING = {
         },
     }
 }
+try:
+    from .settings_local import *
+except:
+    pass
