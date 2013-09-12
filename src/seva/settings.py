@@ -11,6 +11,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+DEFAULT_FROM_EMAIL='info@djangostars.com'
+
 MANAGERS = ADMINS
 
 TIME_ZONE = 'UTC'
@@ -29,7 +31,7 @@ MEDIA_ROOT = os.path.join(PUBLIC_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
+STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static_collected')
 
 STATIC_URL = '/static/'
 
@@ -96,8 +98,12 @@ INSTALLED_APPS = (
     'technologies',
     'evaluations',
     'projects',
-    'gravatar'
+    'gravatar',
+    'djrill'
 )
+
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+MANDRILL_API_KEY = "mVHZ5n7QVBEJX17YYg3MYQ"
 
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 

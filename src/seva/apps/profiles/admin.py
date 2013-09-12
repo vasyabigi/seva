@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
@@ -16,6 +16,9 @@ def send_invitation_email(modeladmin, request, queryset):
     for user in queryset:
         new_password = User.objects.make_random_password()
         user.set_password(new_password)
+        user.is_staff=True
+        group = Group.objects.get(name='Team')
+        user.groups.add(group)
 
         subject, from_email, to = 'You have bean invited to DS Seva!', settings.DEFAULT_FROM_EMAIL, user.email
 
