@@ -1,6 +1,6 @@
 Greetings, {{ user.first_name }}!
 
-You have been chosen to use DS Seva.
+You have been chosen to use DS Seva http://seva.djangostars.com.
 Your credentials:
     Login: {{ user.username}}
     Password: {{ password }}
