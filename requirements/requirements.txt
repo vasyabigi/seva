@@ -11,6 +11,7 @@ PIL
 sorl-thumbnail
 
 django-gravatar
+djrill
 
 mimeparse
 git+https://github.com/toastdriven/django-tastypie.git#egg=tastypie

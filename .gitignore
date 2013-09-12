@@ -14,7 +14,7 @@
 atlassian-ide-plugin.xml
 
 # Project
-/public/static
+/public/static_collected
 /public/media
 settings_local.py
 
