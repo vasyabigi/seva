@@ -35,8 +35,8 @@ send_invitation_email.short_description = 'Reset user\'s password and send invit
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'joined', 'number' )
-    list_editable = ('joined', 'number')
+    list_display = ('__unicode__', 'joined', 'number', 'dont_track_in_avg')
+    list_editable = ('joined', 'number', 'dont_track_in_avg')
 
 
 class UserAdmin(DjangoUserAdmin):
