@@ -16,7 +16,11 @@
   <a href="/">★</a>
   {% for user in users %}
   <a href="#/user/{{ user.username }}">
-	  <img src="{% gravatar_for_user user 40 %}" />
+	  <img 
+    {% if user.profile.dont_track_in_avg %}
+    style="-webkit-filter: blur(2px);"
+    {% endif %}
+    src="{% gravatar_for_user user 40 %}" />
   </a>
   {% endfor %}
   </nav>
