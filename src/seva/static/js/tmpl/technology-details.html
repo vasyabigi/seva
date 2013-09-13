@@ -1,5 +1,5 @@
 <article class="technology-details">
-<div class="user-vote" ng-repeat="evaluation in technology.evaluations" >
+<div class="user-vote" ng-repeat="evaluation in technology.evaluations | orderBy:'-level'">
 	<img scr="" /> {{ evaluation.full_name }} <b class="number">{{ evaluation.level }} </b>
 </div>
 </article>

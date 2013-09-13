@@ -12,6 +12,6 @@
 </div>
 <article class="avg">
     <ul>
-        <li ng-repeat="evl in user.evaluations"><em><a href="#/technology/{{ evl.technology_slug }}">{{ evl.technology }}</a></em><div rating="evl.level" max="10"></div><span class="val">{{ evl.level }}</span></li>
+        <li ng-repeat="evl in user.evaluations | orderBy:'-level'"><em><a href="#/technology/{{ evl.technology_slug }}">{{ evl.technology }}</a></em><div rating="evl.level" max="10"></div><span class="val">{{ evl.level }}</span></li>
     </ul>
 </article>

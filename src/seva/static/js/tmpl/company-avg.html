@@ -1,6 +1,6 @@
 <article id="ds-avg" class="avg">
       <ul>
-	      <li ng-repeat="tech in technologies">
+	      <li ng-repeat="tech in technologies | orderBy:'-avg'">
           <em><a href="#/technology/{{ tech.slug }}">{{ tech.title }}</a></em><div rating="tech.avg | number:0" max="10"></div><span class="val">{{ tech.avg | number:1 }}</span></li>
       </ul>
 </article>
