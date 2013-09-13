@@ -97,7 +97,7 @@ li em a {
   text-decoration: none;
 }
 
-.loved-technologies a {
+.number, .joined, .user-avg-level, .loved-technologies a {
   padding: .4em .6em;
   position: relative;
   top: -0.25em;
