@@ -12,6 +12,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    dont_track_in_avg = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.user.username

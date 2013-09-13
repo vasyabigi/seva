@@ -81,7 +81,7 @@ class TechnologyResource(ModelResource):
     evaluations = fields.ListField(blank=True, use_in='detail')
 
     def dehydrate_avg(self, bundle):
-        return  bundle.obj.selfevaluation_set.aggregate(Avg('level'))['level__avg']
+        return  bundle.obj.selfevaluation_set.filter(user__profile__dont_track_in_avg=False).aggregate(Avg('level'))['level__avg']
 
     def dehydrate_evaluations(self, bundle):
         sl = SelfEvaluation.objects.filter(technology=bundle.obj)
