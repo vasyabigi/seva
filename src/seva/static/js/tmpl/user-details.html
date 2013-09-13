@@ -3,7 +3,7 @@
     <div class="historic-info">
       was <em class='number'>{{ user.number }}</em> and joined on <em class='joined'>{{ user.joined }}</em>
     </div>
-    <em class="user-avg-level">{{ user.avg_level }}</em>
+    <em class="user-avg-level">{{ user.avg_level | number:1 }}</em>
     average level
   </div>
   <div class="loved-technologies">
