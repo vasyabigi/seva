@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('seva', ['seva.controllers', 'ui.gravatar']).
+angular.module('seva', ['seva.controllers', 'ui.gravatar', 'seva.directives']).
   config(['$routeProvider', function($routeProvider) {
       $routeProvider.when('/index', {
         templateUrl: '/static/js/tmpl/company-avg.html',
