@@ -96,3 +96,16 @@ li em, li em a {
 li em a {
   text-decoration: none;
 }
+
+.loved-technologies a {
+  padding: .4em .6em;
+  position: relative;
+  top: -0.25em;
+  background: #444;
+  border-radius: .25em;
+  color: white;
+  font-size: .8em;
+  font-weight: normal;
+  margin-left: 5px;
+  text-decoration: none;
+}
