@@ -49,13 +49,14 @@ li {
   position: relative;
 }
 
-li span {
+li span.val {
   position: absolute;
   right: 0;
   font-size: .8em;
   letter-spacing: 0em;
   font-weight: bold;
   color: #222;
+  top: 0;
 }
 
 article {
@@ -108,4 +109,8 @@ li em a {
   font-weight: normal;
   margin-left: 5px;
   text-decoration: none;
+}
+
+.filled {
+  color: #a40000 !important;
 }

@@ -105,5 +105,5 @@ class TechnologyResource(ModelResource):
             expiration=24*60*60
         )
         allowed_methods = ['get',]
-        cache = SimpleCache(timeout=30)
+        # cache = SimpleCache(timeout=30)
 

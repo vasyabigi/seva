@@ -4,11 +4,11 @@ angular.module('seva.directives', [])
   .directive('rating', function () {
     return {
         restrict: 'A',
-        template: '<ul class="rating">' +
-                    '<li ng-repeat="star in stars" ng-class="star">' +
+        template: '<figure class="rating">' +
+                    '<span ng-repeat="star in stars" ng-class="star">' +
                       '\u2605' +
-                    '</li>' +
-                  '</ul>',
+                    '</span>' +
+                  '</figure>',
         scope: {
             ratingValue: '=rating',
             max: '=',
