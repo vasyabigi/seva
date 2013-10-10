@@ -16,7 +16,7 @@
   <a href="/">★</a>
   {% for user in users %}
   <a href="#/user/{{ user.username }}">
-	  <img 
+	  <img
     {% if user.profile.dont_track_in_avg %}
     style="-webkit-filter: blur(2px);"
     {% endif %}
@@ -29,10 +29,10 @@
   <section ng-view></section>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
   <script src="{% static "js/jquery.min.js" %}"></script>
-  <script src="{% static "js/app.js" %}"></script>
-  <script src="{% static "js/controllers.js" %}"></script>
-  <script src="{% static "js/directives.js" %}"></script>
-  <script src="{% static "js/services.js" %}"></script>
+  <script src="{% static "js/app/app.js" %}"></script>
+  <script src="{% static "js/app/controllers.js" %}"></script>
+  <script src="{% static "js/app/directives.js" %}"></script>
+  <script src="{% static "js/app/services.js" %}"></script>
   <script src="{% static "js/vendor/md5.js" %}"></script>
   <script src="{% static "js/vendor/angular-gravatar.js" %}"></script>
 
