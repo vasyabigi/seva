@@ -1,0 +1,8 @@
+{
+  "name": "seva",
+  "version": "0.0.1",
+  "description": "Grunt learning pkg",
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  }
+}

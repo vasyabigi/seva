@@ -19,7 +19,6 @@ atlassian-ide-plugin.xml
 /public/media
 settings_local.py
 
-
-
 *.log
 *.db
+node_modules
