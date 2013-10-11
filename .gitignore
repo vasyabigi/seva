@@ -22,3 +22,4 @@ settings_local.py
 *.log
 *.db
 node_modules
+dist
