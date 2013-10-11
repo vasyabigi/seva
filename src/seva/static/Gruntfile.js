@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       },
 
       dist: {
-        src: ['<%= app.root %>/**/*.js'],
+        src: ['<%= app.tmp %>/**/*.js'],
         dest: '<%= app.dist %>/js/<%= pkg.name %>.js'
       }
     },
@@ -57,13 +57,37 @@ module.exports = function(grunt) {
         files: [{
           dot: true,
           src: [
-            '<%= app.tmp %>',
+            '<%= app.tmp %>/*',
             '<%= app.dist %>/*'
           ]
         }]
       },
 
       server: 'tmp'
+    },
+
+    copy: {
+      dist: {
+        expand: true,
+        cwd: '<%= app.root %>/',
+        dest: '<%= app.tmp %>/',
+        src: [
+          'js/**/*',
+          'css/**/*'
+        ]
+      }
+    },
+
+    coffee: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= app.root %>/coffee',
+          src: '{,*/}*.coffee',
+          dest: '<%= app.tmp %>/js',
+          ext: '.js'
+        }]
+      }
     }
 
   });
@@ -73,14 +97,22 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   // Default task(s).
   grunt.registerTask('default', [
-    'jshint'
+    'jshint',
+    'clean:server',
+    'copy',
+    'coffee'
   ]);
 
   grunt.registerTask('build', [
     'jshint',
+    'clean:dist',
+    'copy',
+    'coffee',
     'concat',
     'ngmin',
     'uglify'
