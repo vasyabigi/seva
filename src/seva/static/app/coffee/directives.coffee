@@ -1,7 +1,7 @@
 "use strict"
 angular.module("seva.directives", []).directive "rating", ->
   restrict: "A"
-  template: "<ul class=\"rating\">" + "<li ng-repeat=\"star in stars\" ng-class=\"star\">" + "★" + "</li>" + "</ul>"
+  template: "<figure class='rating'><span ng-repeat='star in stars' ng-class='star'>★</span></figure>"
   scope:
     ratingValue: "=rating"
     max: "="

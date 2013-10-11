@@ -88,6 +88,18 @@ module.exports = function(grunt) {
           ext: '.js'
         }]
       }
+    },
+
+    watch: {
+      scripts: {
+        files: '<%= app.root %>/js/**/*',
+        tasks: ['jshint']
+      },
+
+      coffee: {
+        files: '<%= app.root %>/coffee/**/*',
+        tasks: ['coffee']
+      }
     }
 
   });
@@ -99,13 +111,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Default task(s).
   grunt.registerTask('default', [
     'jshint',
     'clean:server',
     'copy',
-    'coffee'
+    'coffee',
+    'watch'
   ]);
 
   grunt.registerTask('build', [
