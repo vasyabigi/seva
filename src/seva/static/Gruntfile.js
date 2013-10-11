@@ -6,20 +6,27 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    app: {
+      'root': 'app',
+      'tmp': 'tmp',
+      'dist': 'dist'
+    },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['Gruntfile.js', 'js/app/**/*.js']
+      all: ['Gruntfile.js', '<%= app.root %>/**/*.js']
     },
 
     concat: {
       options: {
         separator: ';'
       },
+
       dist: {
-        src: ['js/app/**/*.js'],
-        dest: 'js/dist/<%= pkg.name %>.js'
+        src: ['<%= app.root %>/**/*.js'],
+        dest: '<%= app.dist %>/js/<%= pkg.name %>.js'
       }
     },
 
@@ -27,9 +34,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'js/dist/',
+          cwd: '<%= app.dist %>/js',
           src: '*.js',
-          dest: 'js/dist/'
+          dest: '<%= app.dist %>/js'
         }]
       }
     },
@@ -40,9 +47,23 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'js/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+          '<%= app.dist %>/js/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
         }
       }
+    },
+
+    clean: {
+      dist: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= app.tmp %>',
+            '<%= app.dist %>/*'
+          ]
+        }]
+      },
+
+      server: 'tmp'
     }
 
   });
@@ -51,9 +72,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-ngmin');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', [
+    'jshint'
+  ]);
 
   grunt.registerTask('build', [
     'jshint',
